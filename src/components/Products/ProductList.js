@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
-export default function ProductList() {
-  return <h1>hello from product list</h1>;
+export default function ProductList({ products }) {
+  return <h1>fuck you</h1>;
 }
