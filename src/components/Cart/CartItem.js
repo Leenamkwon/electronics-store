@@ -7,7 +7,6 @@ export default function CartItem({ id, image, price, amount, title }) {
     CartContext
   );
 
-  console.log(amount);
   // cart context
   return (
     <article className='cart-item'>

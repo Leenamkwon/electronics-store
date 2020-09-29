@@ -4,12 +4,20 @@ import localCart from '../utils/localCart';
 
 const CartContext = React.createContext();
 
+const localData =
+  localStorage.getItem('cart') !== null
+    ? JSON.parse(localStorage.getItem('cart'))
+    : [];
+
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(localCart);
+  const [cart, setCart] = useState(localData);
   const [total, setTotal] = useState(0);
-  const [carItem, setCartItem] = useState(0);
+  const [cartItem, setCartItem] = useState(0);
 
   useEffect(() => {
+    // local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
     let newCartItems = cart.reduce((total, cartItem) => {
       return total + cartItem.amount;
     }, 0);
@@ -48,7 +56,23 @@ const CartProvider = ({ children }) => {
     return;
   };
 
-  const addToCart = (product) => {};
+  const addToCart = (product) => {
+    const {
+      id,
+      image: { url },
+      title,
+      price,
+    } = product;
+
+    const item = cart.find((item) => item.id === parseInt(id));
+
+    if (item) {
+      increaseAmount(id);
+    } else {
+      setCart([...cart, { id, image: url, title, price, amount: 1 }]);
+    }
+  };
+
   const clearCart = () => {};
 
   return (
@@ -56,7 +80,7 @@ const CartProvider = ({ children }) => {
       value={{
         cart,
         total,
-        carItem,
+        cartItem,
         removeItem,
         increaseAmount,
         decreaseAmount,
