@@ -49,7 +49,7 @@ Global Styles
 body {
   font-family: var(--primaryFont);
   color: var(--mainBlack);
-  background: var(--mainBackground);
+  background: var(--offWhite);
   line-height: 1.4;
   font-size: 1rem;
   font-weight: 300;
@@ -297,14 +297,15 @@ Product List
 .product {
   background: var(--mainWhite);
   margin-bottom: 2rem;
-  box-shadow: var(--lightShadow);
-  transition: var(--mainTransition);
+  /* box-shadow: var(--lightShadow); */
+  transition: all 0.3s ease;
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 19.69rem;
 }
 .product:hover {
-  box-shadow: var(--darkShadow);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
 }
 .img-container {
   padding: 3rem;

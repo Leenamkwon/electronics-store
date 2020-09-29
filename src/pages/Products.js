@@ -10,5 +10,5 @@ export default function Products() {
     return <Loading />;
   }
 
-  return <ProductList title='our products' products={products} />;
+  return <ProductList title='제품 구경하기' products={products} />;
 }
