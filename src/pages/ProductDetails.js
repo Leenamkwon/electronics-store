@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { ProductContext } from '../context/products';
-// import { CartContext } from '../context/cart';
+import { CartContext } from '../context/cart';
 import Loading from '../components/Loading';
 
 export default function ProductDetails() {
+  const { addToCart } = useContext(CartContext);
   let { id } = useParams();
   const history = useHistory();
   const { products } = useContext(ProductContext);
@@ -30,7 +31,10 @@ export default function ProductDetails() {
           <p>{description}</p>
           <button
             className='btn btn-primary btn-block'
-            onClick={() => history.push('/cart')}
+            onClick={() => {
+              addToCart(product);
+              history.push('/cart');
+            }}
           >
             장바구니에 담기
           </button>
