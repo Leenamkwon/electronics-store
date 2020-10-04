@@ -22,7 +22,7 @@ export default function Header() {
           </div>
           <div>
             <li>
-              <Link to='/login'>Sign In</Link>
+              <Link to='/login'>Login</Link>
             </li>
             <li>
               <CartLink />
