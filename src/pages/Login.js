@@ -8,16 +8,14 @@ import { UserContext } from '../context/user';
 export default function Login() {
   const history = useHistory();
 
-  const { userLogin } = useContext(UserContext);
-
-  console.log(userLogin);
+  const { userLogin, alert, showAlert } = useContext(UserContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('default');
   const [isMember, setIsMember] = useState(true);
 
-  let isEmpty = !email || !password || !username;
+  let isEmpty = !email || !password || !username || alert.show;
 
   const toggleMember = () => {
     setIsMember((prev) => {
@@ -43,8 +41,13 @@ export default function Login() {
       } = response.data;
       const newUser = { username, token };
       await userLogin(newUser);
+      showAlert({ msg: `안녕하세요 ${username}님.` });
       history.push('/');
     } else {
+      showAlert({
+        msg: '없는 아이디 이거나 비밀번호가 틀렸습니다.',
+        type: 'danger',
+      });
     }
   };
 
