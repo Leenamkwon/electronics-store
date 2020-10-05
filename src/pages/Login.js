@@ -1,24 +1,51 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import loginUser from '../strapi/loginUser';
 import registerUser from '../strapi/registerUser';
+import { UserContext } from '../context/user';
 
 export default function Login() {
   const history = useHistory();
 
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [username, setUsername] = React.useState('default');
-  const [isMember, setIsMember] = React.useState(true);
+  const { userLogin } = useContext(UserContext);
 
-  let isEmpty = !email || !password;
-  console.log(isEmpty);
+  console.log(userLogin);
 
-  const toggleMember = () => {};
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('default');
+  const [isMember, setIsMember] = useState(true);
+
+  let isEmpty = !email || !password || !username;
+
+  const toggleMember = () => {
+    setIsMember((prev) => {
+      let isMember = !prev;
+      isMember ? setUsername('default') : setUsername('');
+      return isMember;
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let response;
+    if (isMember) {
+      response = await loginUser({ email, password });
+    } else {
+      response = await registerUser({ email, password, username });
+    }
+
+    if (response) {
+      const {
+        jwt: token,
+        user: { username },
+      } = response.data;
+      const newUser = { username, token };
+      await userLogin(newUser);
+      history.push('/');
+    } else {
+    }
   };
 
   return (

@@ -15,12 +15,14 @@ import ProductDetails from './pages/ProductDetails';
 
 // components
 import Header from './components/Header';
+import Alert from './components/Alert';
 
 // components
 export default function App() {
   return (
     <Router>
       <Header />
+      <Alert />
       <Switch>
         <Route path='/' exact>
           <Home />
