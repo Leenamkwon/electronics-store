@@ -68,7 +68,9 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const clearCart = () => {};
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+  };
 
   return (
     <CartContext.Provider
