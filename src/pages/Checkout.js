@@ -21,5 +21,9 @@ export default function Checkout(props) {
   }
 
   if (cart.length < 1) return <EmptyCart />;
-  return <h1>hello from checkout page</h1>;
+  return (
+    <section className='section form'>
+      <h2 className='section-title'>checkout</h2>
+    </section>
+  );
 }
