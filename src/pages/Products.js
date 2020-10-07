@@ -1,14 +1,20 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../context/products';
 import Loading from '../components/Loading';
-import ProductList from '../components/Products/ProductList';
+import Filters from '../components/Products/Filters';
+import Pagination from '../components/Products/pagination';
 
 export default function Products() {
-  const { products, loading, featured } = useContext(ProductContext);
+  const { products, loading, sorted } = useContext(ProductContext);
 
   if (loading) {
     return <Loading />;
   }
 
-  return <ProductList title='제품 구경하기' products={products} />;
+  return (
+    <>
+      <Filters />
+      <Pagination />
+    </>
+  );
 }

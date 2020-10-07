@@ -15,3 +15,11 @@ export function flattenProducts(data) {
 export function featuredProducts(data) {
   return data.filter((item) => item.featured === true);
 }
+
+export function paginate(products) {
+  const itemsPerPage = 4;
+  const pages = Math.ceil(products.length / itemsPerPage);
+
+  // our code goes here
+  return products.slice(0, itemsPerPage);
+}
