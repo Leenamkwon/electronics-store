@@ -17,6 +17,7 @@ import PrivateRoute from './components/PrivateRoute';
 // components
 import Header from './components/Header';
 import Alert from './components/Alert';
+import ScrollButton from './components/ScrollButton';
 
 // components
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
     <Router>
       <Header />
       <Alert />
+      <ScrollButton />
       <Switch>
         <Route path='/' exact>
           <Home />
