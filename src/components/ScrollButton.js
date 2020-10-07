@@ -14,7 +14,7 @@ const ScrollButton = () => {
   };
   return (
     <button
-      className={height > 100 ? 'scroll-btn show-scroll-btn' : 'scroll'}
+      className={height > 100 ? 'scroll-btn show-scroll-btn' : 'scroll-btn'}
       onClick={scrollBackToTop}
     >
       <FaAngleDoubleUp />
