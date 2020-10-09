@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import { UserContext } from '../context/user';
 
