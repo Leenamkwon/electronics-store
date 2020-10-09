@@ -32,7 +32,11 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   const changePage = (index) => {
-    console.log(index);
+    if (page <= 0 || page === sorted.length - 1) {
+      return;
+    } else {
+      setPage(index);
+    }
   };
 
   const updateFilters = (e) => {
