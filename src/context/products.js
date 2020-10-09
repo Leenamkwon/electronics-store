@@ -32,7 +32,7 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   const changePage = (index) => {
-    if (page <= 0 || page === sorted.length - 1) {
+    if (index < 0 || index > sorted.length - 1) {
       return;
     } else {
       setPage(index);

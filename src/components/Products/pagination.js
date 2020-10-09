@@ -27,7 +27,7 @@ const pagination = () => {
               </button>
             ))}
             {/* next */}
-            <button className='prev-page-btn'>
+            <button className='next-page-btn'>
               <FaAngleDoubleRight onClick={() => changePage(page + 1)} />
             </button>
           </article>

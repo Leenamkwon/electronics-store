@@ -8,11 +8,12 @@ export default function ProductDetails() {
   const { addToCart } = useContext(CartContext);
   let { id } = useParams();
   const history = useHistory();
-  const { products } = useContext(ProductContext);
+  const { sorted, page } = useContext(ProductContext);
 
-  const product = products.find((item) => item.id === parseInt(id));
+  const product =
+    sorted[page] && sorted[page].find((item) => item.id === parseInt(id));
 
-  if (products.length === 0) {
+  if (sorted.length === 0) {
     return <Loading />;
   } else {
     const { image, title, price, description } = product;
