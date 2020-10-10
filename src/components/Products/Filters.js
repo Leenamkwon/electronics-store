@@ -6,12 +6,13 @@ const Filters = () => {
     filters: { search, category, shipping, price },
     updateFilters,
     sorted,
+    products,
   } = useContext(ProductContext);
 
   const categoryArr = useMemo(() => {
     const uniqCategory = [
       'all',
-      ...new Set(sorted.flat().map((item) => item.category)),
+      ...new Set(products.map((item) => item.category)),
     ];
 
     return uniqCategory.map((item) => {
@@ -21,7 +22,7 @@ const Filters = () => {
         </option>
       );
     });
-  }, [sorted]);
+  }, [products]);
 
   return (
     <section className='filters-section'>
@@ -42,7 +43,7 @@ const Filters = () => {
           </div>
           {/* select category */}
           <div className='form-group'>
-            <label htmlFor='category'>category</label>
+            <label htmlFor='category'>종류별</label>
             <select
               name='category'
               id='category'
@@ -66,7 +67,7 @@ const Filters = () => {
           </div>
         </div>
         <div className='price-group'>
-          <p>가격 별</p>
+          <p>가격별</p>
           <label>
             <input
               type='radio'

@@ -24,12 +24,46 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     axios.get(`${url}/products`).then((response) => {
-      setProducts(paginate(flattenProducts(response.data)));
+      setProducts(flattenProducts(response.data));
       setSorted(paginate(flattenProducts(response.data)));
       setFeatured(featuredProducts(flattenProducts(response.data)));
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    let newProducts = [...products].sort((a, b) => a.price - b.price);
+    const { search, category, shipping, price } = filters;
+
+    if (category !== 'all') {
+      newProducts = newProducts.filter((item) => item.category === category);
+    }
+
+    if (search) {
+      newProducts = newProducts.filter(
+        (item) => item.title.toLowerCase().trim().startsWith(search, 0) || null
+      );
+    }
+
+    if (shipping !== false) {
+      newProducts = newProducts.filter((item) => item.Freeshipping === true);
+    }
+
+    if (price !== 'all') {
+      newProducts = newProducts.filter((item) => {
+        if (price === 0) {
+          return item.price < 300;
+        } else if (price === 300) {
+          return item.price > 300 && item.price < 600;
+        } else {
+          return item.price >= 650;
+        }
+      });
+    }
+
+    setPage(0);
+    setSorted(paginate(newProducts));
+  }, [filters, products]);
 
   const changePage = (index) => {
     if (index < 0 || index > sorted.length - 1) {
@@ -46,8 +80,11 @@ const ProductProvider = ({ children }) => {
     let filterValue;
     if (type === 'checkbox') {
       filterValue = e.target.checked;
+    } else if (type === 'radio') {
+      value === 'all' ? (filterValue = value) : (filterValue = parseInt(value));
+    } else {
+      filterValue = value;
     }
-
     setFilters({ ...filters, [filter]: filterValue });
   };
 
