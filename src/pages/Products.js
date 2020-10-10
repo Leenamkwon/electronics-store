@@ -5,7 +5,7 @@ import Filters from '../components/Products/Filters';
 import Pagination from '../components/Products/pagination';
 
 export default function Products() {
-  const { products, loading, sorted } = useContext(ProductContext);
+  const { loading } = useContext(ProductContext);
 
   if (loading) {
     return <Loading />;
