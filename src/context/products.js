@@ -39,7 +39,17 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const updateFilters = (e) => {};
+  const updateFilters = (e) => {
+    const type = e.target.type;
+    const filter = e.target.name;
+    const value = e.target.value;
+    let filterValue;
+    if (type === 'checkbox') {
+      filterValue = e.target.checked;
+    }
+
+    setFilters({ ...filters, [filter]: filterValue });
+  };
 
   return (
     <ProductContext.Provider
