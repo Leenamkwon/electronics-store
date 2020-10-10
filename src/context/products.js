@@ -39,9 +39,7 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const updateFilters = (e) => {
-    console.log(e);
-  };
+  const updateFilters = (e) => {};
 
   return (
     <ProductContext.Provider
