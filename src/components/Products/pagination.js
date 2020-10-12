@@ -7,7 +7,7 @@ const pagination = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { sorted, page, changePage } = useContext(ProductContext);
 
-  if (sorted) {
+  if (sorted[page]) {
     return (
       <>
         <ProductList title='원하는 제품을 구경하세요' products={sorted[page]} />
@@ -35,11 +35,7 @@ const pagination = () => {
       </>
     );
   } else {
-    return (
-      <h3 className='search-errors'>
-        unfortunately your search query did not return any products
-      </h3>
-    );
+    return <h3 className='search-errors'>검색결과에 맞는 제품이 없습니다.</h3>;
   }
 };
 
