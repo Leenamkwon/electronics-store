@@ -7,7 +7,7 @@ const pagination = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { sorted, page, changePage } = useContext(ProductContext);
 
-  if (sorted[page]) {
+  if (sorted) {
     return (
       <>
         <ProductList title='원하는 제품을 구경하세요' products={sorted[page]} />
